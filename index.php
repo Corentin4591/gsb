@@ -24,6 +24,5 @@ switch($uc)
 	  { include("controleurs/c_gestionProduits.php");break;  }
 }
 include("vues/v_pied.html") ;
-
 ?>
 
