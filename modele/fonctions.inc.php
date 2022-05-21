@@ -204,5 +204,18 @@ function verifPassword ($mdp): bool{
 	$res = $pt_long * $cpt;
 	return ($total == $res);
 }
-
+function adminCheck (): bool {
+	$check = false;
+	try {
+		if ($_SESSION['login'] == 'admin'){
+			$check = true;
+		}
+	}
+	catch (PDOException $e) 
+		{
+        print "Erreur !: " . $e->getMessage();
+        die();
+		}
+	return $check;
+}
 ?>

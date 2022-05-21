@@ -26,6 +26,8 @@ switch($uc)
 		{ include("controleurs/c_connexion.php");break;  }
 	case 'inscrire' :
 		{ include("controleurs/c_inscription.php");break;  }
+	case 'gestionCommande' :
+		{ include("controleurs/c_gestionCommande.php");break;  }
 }
 include("vues/v_pied.html") ;
 ?>

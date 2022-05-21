@@ -135,7 +135,8 @@ include_once 'bd.inc.php';
 		$maxi = $laLigne['maxi'] ;// on place le dernier id de commande dans $maxi
 		$idCommande = $maxi+1; // on augmente le dernier id de commande de 1 pour avoir le nouvel idCommande
 		$date = date('Y/m/d'); // récupération de la date système
-		$req = "insert into commande values ('$idCommande','$date','$nom','$rue','$cp','$ville','$mail')";
+		$idUser = $_SESSION['login'];
+		$req = "insert into commande values ('$idCommande','$date','$nom','$rue','$cp','$ville','$mail','$idUser')";
 		$res = $monPdo->exec($req);
 		// insertion produits commandés
 		foreach($lesIdProduit as $unIdProduit)

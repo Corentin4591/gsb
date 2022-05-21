@@ -12,9 +12,17 @@
 	<?php 
           if(!isset($_SESSION['login'])) { ?>
             <li><a class="btn" href="index.php?uc=connexion&action=seConnecter">Connexion</a></li>
-            <?php }  
-             else {?> 
-              <li><a class="btn" href="index.php?uc=connexion&action=deconnexion">Deconnexion</a></li>
-              <?php }?> 
+            <?php 
+          }  
+          else {?> 
+            <li><a class="btn" href="index.php?uc=connexion&action=deconnexion">Deconnexion</a></li>
+            <?php 
+          }
+          if (adminCheck() == true ){ ?>
+              <li><a class="btn" href="index.php?uc=gestionCommande&action=gererCommande">Gestion Commande</a></li>
+              <?php      
+          }
+          
+          ?> 
 	
 </ul>

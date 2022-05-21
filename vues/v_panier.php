@@ -9,6 +9,7 @@ foreach( $lesProduitsDuPanier as $unProduit)
 	$description = $unProduit['description'];
 	$image = $unProduit['image'];
 	$prix = $unProduit['prix'];
+	$prix_total = $prix
 	// affichage
 	?>
 	<div class="card">

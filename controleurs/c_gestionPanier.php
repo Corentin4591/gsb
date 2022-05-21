@@ -43,22 +43,28 @@ switch($action)
 		break;
 	case 'confirmerCommande'	:
 	{
-		$nom =$_REQUEST['nom'];$rue=$_REQUEST['rue'];$ville =$_REQUEST['ville'];$cp=$_REQUEST['cp'];$mail=$_REQUEST['mail'];
-	 	$msgErreurs = getErreursSaisieCommande($nom,$rue,$ville,$cp,$mail);
-		if (count($msgErreurs)!=0)
-		{
-			include ("vues/v_erreurs.php");
-			include ("vues/v_commande.php");
+		if (!isset($_SESSION['login'])){
+			echo 'Vous devez vous connecter pour passer une commande';
 		}
-		else
-		{
-			$lesIdProduit = getLesIdProduitsDuPanier();
-			creerCommande($nom,$rue,$cp,$ville,$mail, $lesIdProduit );
-			$message = "Commande enregistrée";
-			supprimerPanier();
-			include ("vues/v_message.php");
+		else {
+			$nom =$_REQUEST['nom'];$rue=$_REQUEST['rue'];$ville =$_REQUEST['ville'];$cp=$_REQUEST['cp'];$mail=$_REQUEST['mail'];
+	 		$msgErreurs = getErreursSaisieCommande($nom,$rue,$ville,$cp,$mail);
+			if (count($msgErreurs)!=0)
+			{
+				include ("vues/v_erreurs.php");
+				include ("vues/v_commande.php");
+			}
+			else
+			{
+				$lesIdProduit = getLesIdProduitsDuPanier();
+				creerCommande($nom,$rue,$cp,$ville,$mail, $lesIdProduit );
+				$message = "Commande enregistrée";
+				supprimerPanier();
+				include ("vues/v_message.php");
+			}
+			break;
 		}
-		break;
+		
 	}
 }
 
