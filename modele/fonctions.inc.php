@@ -186,4 +186,23 @@ function getErreursSaisieCommande($nom,$rue,$ville,$cp,$mail)
 	}
 	return $lesErreurs;
 }
+/**
+ * Test si un mot de passe est d'une complexité suffisante 
+ * @param string $mdp motn de passe saisie par l'utilisateur
+ * @return boolean true si le mdp est assez complexe
+ */
+function verifPassword ($mdp): bool{
+	$total = 10;
+	$long = strlen($mdp);
+	$pt_long = 0;
+	$cpt=0;
+	if ($long >= 8) {$pt_long=1;} 
+	if (preg_match("/[a-z]/", $mdp)) {$cpt=$cpt+1;}
+	if (preg_match("/[A-Z]/", $mdp)) {$cpt=$cpt+2;}
+	if (preg_match("/[0-9]/", $mdp)) {$cpt=$cpt+3;}
+	if (preg_match("/\W/", $mdp)) {$cpt=$cpt+4;}
+	$res = $pt_long * $cpt;
+	return ($total == $res);
+}
+
 ?>

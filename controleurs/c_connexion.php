@@ -8,12 +8,22 @@
                 if(isset($_POST['submit'])){
                     $pseudo = $_POST['username'];
                     $pass = $_POST['password'];
-                    $conn = connexionPDO();
-                    $req = $conn ->prepare('SELECT nom FROM administrateur WHERE nom = :pseudo AND mdp = :pass');
-                    $req->execute(array(
-                        'pseudo' => $pseudo,
-                        'pass' => $pass));
-                    $res = $req->fetch();
+                    if($pseudo == 'admin') {
+                        $conn = connexionPDO();
+                        $req = $conn ->prepare('SELECT nom FROM administrateur WHERE nom = :pseudo AND mdp = :pass');
+                        $req->execute(array(
+                            'pseudo' => $pseudo,
+                            'pass' => $pass));
+                        $res = $req->fetch();
+                    }
+                    else {
+                        $conn = connexionPDO();
+                        $req = $conn ->prepare('SELECT email FROM utilisateurs WHERE email = :mail AND mdp = :pass');
+                        $req->execute(array(
+                            'mail' => $pseudo,
+                            'pass' => $pass));
+                        $res = $req->fetch();
+                    }
          
                 if (!$res) {
                     echo 'Mauvais identifiant ou mot de passe !';
