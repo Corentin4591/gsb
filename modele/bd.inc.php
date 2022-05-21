@@ -18,7 +18,7 @@
 function connexionPDO() {
     $login = 'root';
     $mdp = '';
-    $bd = 'gsbparam';
+    $bd = 'gsb';
     $serveur = 'localhost';
 
     try {
