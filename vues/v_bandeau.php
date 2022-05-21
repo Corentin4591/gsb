@@ -18,9 +18,12 @@
             <li><a class="btn" href="index.php?uc=connexion&action=deconnexion">Deconnexion</a></li>
             <?php 
           }
-          if (adminCheck() == true ){ ?>
+          if (isset($_SESSION['login']) ){ 
+            if ($_SESSION['login'] == 'admin') {
+              ?>
               <li><a class="btn" href="index.php?uc=gestionCommande&action=gererCommande">Gestion Commande</a></li>
               <?php      
+            }
           }
           
           ?> 
