@@ -135,13 +135,17 @@ include_once 'bd.inc.php';
 		$maxi = $laLigne['maxi'] ;// on place le dernier id de commande dans $maxi
 		$idCommande = $maxi+1; // on augmente le dernier id de commande de 1 pour avoir le nouvel idCommande
 		$date = date('Y/m/d'); // récupération de la date système
-		$idUser = $_SESSION['login'];
-		$req = "insert into commande values ('$idCommande','$date','$nom','$rue','$cp','$ville','$mail','$idUser')";
+		$session = $_SESSION['login'];
+		$req2 = "select id from utilisateurs where email ='$session'";
+		$res2 = $monPdo->query($req2);
+		$ligne2 = $res2->fetch();
+		$idUser = $ligne2[0];
+		$req = "INSERT into commande values ('$idCommande','$date','$nom','$rue','$cp','$ville','$mail','$idUser')";
 		$res = $monPdo->exec($req);
 		// insertion produits commandés
 		foreach($lesIdProduit as $unIdProduit)
 		{
-			$req = "insert into contenir values ('$idCommande','$unIdProduit')";
+			$req = "INSERT into contenir (idProduit, idCommande) VALUES ('$unIdProduit','$idCommande')";
 			$res = $monPdo->exec($req);
 		}
 		}
@@ -162,16 +166,31 @@ include_once 'bd.inc.php';
 	{
 		try 
 		{
-        $monPdo = connexionPDO();
-		$req = 'select id, dateCommande, nomPrenomClient, adresseRueClient, cpClient, villeClient, mailClient from commande where YEAR(dateCommande)= '.$an.' AND MONTH(dateCommande)='.$mois;
-		$res = $monPdo->query($req);
-		$lesCommandes = $res->fetchAll();
-		return $lesCommandes;
+        	$monPdo = connexionPDO();
+			$req = 'SELECT id, dateCommande, nomPrenomClient, adresseRueClient, cpClient, villeClient, mailClient from commande where YEAR(dateCommande)= '.$an.' AND MONTH(dateCommande)='.$mois;
+			$res = $monPdo->query($req);
+			$lesCommandes = $res->fetchAll();
+			return $lesCommandes;
 		}
 		catch (PDOException $e) 
 		{
-        print "Erreur !: " . $e->getMessage();
-        die();
+        	print "Erreur !: " . $e->getMessage();
+        	die();
 		}
+	}
+
+	function getCommandes () {
+		try{
+			$monPdo = connexionPDO();
+			$req = 'SELECT id, dateCommande, nomPrenomClient, adresseRueClient, cpClient, villeClient, mailClient, id_utilisateurs from commande';
+			$res = $monPdo->query($req);
+			$allCommandes = $ress->fetchAll();
+			return $allCommandes;
+		}
+		catch (PDOException $e) {
+        	print "Erreur !: " . $e->getMessage();
+        	die();
+		}
+		
 	}
 ?>
