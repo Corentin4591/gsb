@@ -185,9 +185,9 @@ include_once 'bd.inc.php';
 	function getCommandes () {
 		try{
 			$monPdo = connexionPDO();
-			$req = 'SELECT id, dateCommande, nomPrenomClient, adresseRueClient, cpClient, villeClient, mailClient, id_utilisateurs from commande';
+			$req = "SELECT c.id, c.dateCommande, c.nomPrenomClient, c.adresseRueClient, c.cpClient, c.villeClient, c.mailClient, c.id_utilisateurs, statut.libelle as statut from commande c join statut on statut.id=c.id_statut where c.id_statut != 'L'";
 			$res = $monPdo->query($req);
-			$allCommandes = $ress->fetchAll();
+			$allCommandes = $res->fetchAll();
 			return $allCommandes;
 		}
 		catch (PDOException $e) {
