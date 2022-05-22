@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  sam. 21 mai 2022 à 15:17
+-- Généré le :  Dim 22 mai 2022 à 14:25
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -81,17 +81,21 @@ CREATE TABLE IF NOT EXISTS `commande` (
   `villeClient` char(32) DEFAULT NULL,
   `mailClient` char(50) DEFAULT NULL,
   `id_utilisateurs` int(11) DEFAULT NULL,
+  `id_statut` char(25) DEFAULT 'PRP',
   PRIMARY KEY (`id`),
-  KEY `commande_utilisateurs_FK` (`id_utilisateurs`)
+  KEY `commande_utilisateurs_FK` (`id_utilisateurs`),
+  KEY `commande_statut0_FK` (`id_statut`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `commande`
 --
 
-INSERT INTO `commande` (`id`, `dateCommande`, `nomPrenomClient`, `adresseRueClient`, `cpClient`, `villeClient`, `mailClient`, `id_utilisateurs`) VALUES
-('1101461660', '2011-07-12', 'Dupont Jacques', '12, rue haute', '75001', 'Paris', 'dupont@wanadoo.fr', NULL),
-('1101461665', '2011-07-20', 'Durant Yves', '23, rue des ombres', '75012', 'Paris', 'durant@free.fr', NULL);
+INSERT INTO `commande` (`id`, `dateCommande`, `nomPrenomClient`, `adresseRueClient`, `cpClient`, `villeClient`, `mailClient`, `id_utilisateurs`, `id_statut`) VALUES
+('1101461660', '2011-07-12', 'Dupont Jacques', '12, rue haute', '75001', 'Paris', 'dupont@wanadoo.fr', NULL, NULL),
+('1101461665', '2011-07-20', 'Durant Yves', '23, rue des ombres', '75012', 'Paris', 'durant@free.fr', NULL, NULL),
+('1101461666', '2022-05-22', 'LEBAS Corentin', '9 rue max jacob', '45140', 'st jean de la ruelle', 'corentin@lebas.fr', 1, NULL),
+('1101461667', '2022-05-22', 'LEBAS Corentin', '9 rue max jacob', '45140', 'st jean de la ruelle', 'corentin@lebas.fr', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -112,6 +116,8 @@ CREATE TABLE IF NOT EXISTS `contenir` (
 --
 
 INSERT INTO `contenir` (`idProduit`, `idCommande`) VALUES
+('c02', '1101461667'),
+('c06', '1101461667'),
 ('f03', '1101461660'),
 ('f05', '1101461665'),
 ('p01', '1101461660'),
@@ -164,6 +170,28 @@ INSERT INTO `produit` (`id`, `description`, `prix`, `image`, `idCategorie`) VALU
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `statut`
+--
+
+DROP TABLE IF EXISTS `statut`;
+CREATE TABLE IF NOT EXISTS `statut` (
+  `id` char(25) NOT NULL,
+  `libelle` char(25) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `statut`
+--
+
+INSERT INTO `statut` (`id`, `libelle`) VALUES
+('CL', 'En cour de livraison'),
+('L', 'Livrée'),
+('PRP', 'En prépartion');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `utilisateurs`
 --
 
@@ -190,6 +218,7 @@ INSERT INTO `utilisateurs` (`id`, `email`, `mdp`) VALUES
 -- Contraintes pour la table `commande`
 --
 ALTER TABLE `commande`
+  ADD CONSTRAINT `commande_statut0_FK` FOREIGN KEY (`id_statut`) REFERENCES `statut` (`id`),
   ADD CONSTRAINT `commande_utilisateurs_FK` FOREIGN KEY (`id_utilisateurs`) REFERENCES `utilisateurs` (`id`);
 
 --
