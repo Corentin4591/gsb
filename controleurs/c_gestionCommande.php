@@ -8,9 +8,9 @@ else {
 	{
 		case 'gererCommande' : {
             $lesCommandes = getCommandes();
+            $lesCommandesF = getCommandesF();
             include("vues/v_gestionCommande.php");
         }
-
     }
 }
 

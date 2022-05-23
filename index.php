@@ -28,6 +28,8 @@ switch($uc)
 		{ include("controleurs/c_inscription.php");break;  }
 	case 'gestionCommande' :
 		{ include("controleurs/c_gestionCommande.php");break;  }
+	case 'majCommande' :
+		{ include("controleurs/c_majCommande.php");break;  }
 }
 include("vues/v_pied.html") ;
 ?>

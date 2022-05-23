@@ -30,6 +30,7 @@
                 }
                 else
                     {
+                    header('Location: index.php?uc=connexion&action=seConnecter ');
                     $_SESSION['login'] = $pseudo;
                     echo 'Vous êtes connecté !';
                     }

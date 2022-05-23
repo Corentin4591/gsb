@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 22 mai 2022 à 14:25
+-- Généré le :  lun. 23 mai 2022 à 20:32
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -92,10 +92,8 @@ CREATE TABLE IF NOT EXISTS `commande` (
 --
 
 INSERT INTO `commande` (`id`, `dateCommande`, `nomPrenomClient`, `adresseRueClient`, `cpClient`, `villeClient`, `mailClient`, `id_utilisateurs`, `id_statut`) VALUES
-('1101461660', '2011-07-12', 'Dupont Jacques', '12, rue haute', '75001', 'Paris', 'dupont@wanadoo.fr', NULL, NULL),
-('1101461665', '2011-07-20', 'Durant Yves', '23, rue des ombres', '75012', 'Paris', 'durant@free.fr', NULL, NULL),
-('1101461666', '2022-05-22', 'LEBAS Corentin', '9 rue max jacob', '45140', 'st jean de la ruelle', 'corentin@lebas.fr', 1, NULL),
-('1101461667', '2022-05-22', 'LEBAS Corentin', '9 rue max jacob', '45140', 'st jean de la ruelle', 'corentin@lebas.fr', 1, NULL);
+('1101461667', '2022-05-22', 'jean marc', '16 rue des cerisiers', '37000', 'tours', 'jsp@test.fr', 1, 'PRP'),
+('1101461668', '2022-05-23', 'corentin lebas', '9 rue maurice millet', '45000', 'orleans', 'test@gmail.com', 2, 'L');
 
 -- --------------------------------------------------------
 
@@ -118,7 +116,10 @@ CREATE TABLE IF NOT EXISTS `contenir` (
 INSERT INTO `contenir` (`idProduit`, `idCommande`) VALUES
 ('c02', '1101461667'),
 ('c06', '1101461667'),
+('f01', '1101461668'),
+('f02', '1101461668'),
 ('f03', '1101461660'),
+('f04', '1101461667'),
 ('f05', '1101461665'),
 ('p01', '1101461660'),
 ('p06', '1101461665');
@@ -201,14 +202,15 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
   `email` varchar(50) NOT NULL,
   `mdp` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `utilisateurs`
 --
 
 INSERT INTO `utilisateurs` (`id`, `email`, `mdp`) VALUES
-(1, 'corentin@lebas.fr', '1234Corentin!');
+(1, 'corentin@lebas.fr', '1234Corentin!'),
+(2, 'test@gmail.com', 'Mdptest1!');
 
 --
 -- Contraintes pour les tables déchargées

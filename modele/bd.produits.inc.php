@@ -196,4 +196,46 @@ include_once 'bd.inc.php';
 		}
 		
 	}
+
+	/**
+	 * Retourne les commandes terminées
+	 * @return $commandesF : liste de toutes lsee commandes terminées
+	 */
+	function getCommandesF () {
+		try{
+			$monPdo = connexionPDO();
+			$req = "SELECT c.id, c.dateCommande, c.nomPrenomClient, c.adresseRueClient, c.cpClient, c.villeClient, c.mailClient, c.id_utilisateurs, statut.libelle as statut from commande c join statut on statut.id=c.id_statut where c.id_statut = 'L'";
+			$res = $monPdo->query($req);
+			$commandesF = $res->fetchAll();
+			return $commandesF;
+		}
+		catch (PDOException $e) {
+        	print "Erreur !: " . $e->getMessage();
+        	die();
+		}
+	}
+
+	/**
+	 * Retourne l'id et le statut de la commande pour l'update du statut
+	 * @param $idCommande : l'id de la commande séléctionée 
+	 * 
+	 */
+	function majCommande ($statut, $idCommande) {
+		$monPdo = connexionPDO();
+		$req = 'UPDATE commande SET id_statut = "'.$statut.'" WHERE id = "'.$idCommande.'"';
+		$res = $monPdo->query($req);
+	}
+
+	/**
+	 * Retourne une commande ne fonction de son id
+	 * @param $id : id de la commande 
+	 * @return $laCommande : la ligne complete de la commande selectionnée
+	 */
+	function getCommandeById ($id) {
+			$monPdo = connexionPDO();
+			$req = 'SELECT c.id, c.dateCommande, c.nomPrenomClient, c.adresseRueClient, c.cpClient, c.villeClient, c.mailClient, c.id_utilisateurs, statut.libelle as statut from commande c join statut on statut.id=c.id_statut where '.$id.'= c.id';
+			$res = $monPdo->query($req);
+			$laCommande = $res->fetchAll();
+			return $laCommande;
+	}
 ?>
