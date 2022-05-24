@@ -4,7 +4,7 @@
         <link href="modele/tab.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <h1>Commandes en cour</h1>
+        <h1>Commandes en cours</h1>
         <div class="table-wrapper">
             <table class="fl-table">
                 <thead>
@@ -22,7 +22,7 @@
                 </thead>
                 <tbody>
                     <?php 
-                        for ($i = 0 ; $i < sizeof($lesCommandes); $i++ ){ ?>
+                        for ($i = 0 ; $i < sizeof($lesCommandes); $i++ ){ //boucle qui affiche les commandes en cour ?>
                             <tr>
                                 <td><?php echo $lesCommandes[$i]['id'];?></td>
                                 <td><?php echo $lesCommandes[$i]['dateCommande'];?></td>
@@ -32,7 +32,7 @@
                                 <td><?php echo $lesCommandes[$i]['villeClient'];?></td>
                                 <td><?php echo $lesCommandes[$i]['mailClient'];?></td>
                                 <td><?php echo $lesCommandes[$i]['id_utilisateurs'];?></td>
-                                <td><?php echo $lesCommandes[$i]['statut'];?><br><a href="index.php?uc=majCommande&action=majCommande&id=<?php echo $lesCommandes[$i]['id'] ?>">Maj statut</td>
+                                <td><?php echo $lesCommandes[$i]['statut'];?><br><a href="index.php?uc=majCommande&action=majCommande&id=<?php echo $lesCommandes[$i]['id']?>">Maj statut</td>
                             </tr>
                         <?php
                         }  ?>
@@ -57,7 +57,7 @@
                 </thead>
                 <tbody>
                     <?php 
-                        for ($i = 0 ; $i < sizeof($lesCommandesF); $i++ ){ ?>
+                        for ($i = 0 ; $i < sizeof($lesCommandesF); $i++ ){ //boucle qui affiche les commandes livrées?>
                             <tr>
                                 <td><?php echo $lesCommandesF[$i]['id'];?></td>
                                 <td><?php echo $lesCommandesF[$i]['dateCommande'];?></td>

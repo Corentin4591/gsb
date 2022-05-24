@@ -15,7 +15,6 @@ h2{
     color: white;
     padding: 30px 0;
 }
-
 /* Table Styles */
 
 .table-wrapper{
@@ -59,6 +58,7 @@ h2{
 .fl-table tr:nth-child(even) {
     background: #F8F8F8;
 }
+
 
 /* Responsive */
 

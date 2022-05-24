@@ -231,11 +231,27 @@ include_once 'bd.inc.php';
 	 * @param $id : id de la commande 
 	 * @return $laCommande : la ligne complete de la commande selectionnée
 	 */
-	function getCommandeById ($id) {
+	function getCommandeById ($idCommande) {
 			$monPdo = connexionPDO();
-			$req = 'SELECT c.id, c.dateCommande, c.nomPrenomClient, c.adresseRueClient, c.cpClient, c.villeClient, c.mailClient, c.id_utilisateurs, statut.libelle as statut from commande c join statut on statut.id=c.id_statut where '.$id.'= c.id';
+			$req = 'SELECT c.id, c.dateCommande, c.nomPrenomClient, c.adresseRueClient, c.cpClient, c.villeClient, c.mailClient, c.id_utilisateurs, statut.libelle as statut from commande c join statut on statut.id=c.id_statut where '.$idCommande.'= c.id';
 			$res = $monPdo->query($req);
 			$laCommande = $res->fetchAll();
 			return $laCommande;
+	}
+
+	function getCommandeByUser ($idUser) {
+		$monPdo = connexionPDO();
+		$req = 'SELECT c.id, c.dateCommande, c.nomPrenomClient, c.adresseRueClient, c.cpClient, c.villeClient, c.mailClient, c.id_utilisateurs, statut.libelle as statut from commande c join statut on statut.id=c.id_statut where '.$idUser.'= c.id_utilisateurs';
+		$res = $monPdo->query($req);
+		$commandeUser = $res->fetchAll();
+		return $commandeUser;
+	}
+
+	function getIdUser ($mail) {
+		$monPdo = connexionPDO();
+		$req = 'SELECT id from utilisateurs WHERE email = "'.$mail.'"';
+		$res = $monPdo->query($req);
+		$idUser = $res->fetch();
+		return $idUser;
 	}
 ?>

@@ -40,6 +40,10 @@ switch($action)
 		}
 		break;
 	}
+
+	case 'nosProduits' : {
+		
+	}
 }
 ?>
 

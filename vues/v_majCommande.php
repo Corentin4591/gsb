@@ -21,7 +21,7 @@
                 </thead>
                 <tbody>
                         <tr>
-                            <td><?php echo $laCommande[0]['id'];?></td>
+                            <td><?php echo $laCommande[0]['id'];?></td> 
                             <td><?php echo $laCommande[0]['dateCommande'];?></td>
                             <td><?php echo $laCommande[0]['nomPrenomClient'];?></td>
                             <td><?php echo $laCommande[0]['adresseRueClient'];?></td>
@@ -42,7 +42,7 @@
                 <input type="submit" value="Enregistrer" name="submit">
             </form>
             <?php
-            if (isset($_POST['submit'])){
+            if (isset($_POST['submit'])){ //quand le bouton est cliqué, la commande est mise à jour avec le nouveau statut
                 majCommande($_POST['statut'],$laCommande[0]['id']);
             }
             ?>
