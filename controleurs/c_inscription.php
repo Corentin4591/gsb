@@ -25,6 +25,7 @@
                     echo 'Veillez renseignez un email valide et mot de passe assez complexe';
                 }
         include("vues/v_inscription.php");
+        break;
         }
     }  
 

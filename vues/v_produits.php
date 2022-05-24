@@ -1,7 +1,12 @@
+<div>
+<h4>Trier par prix :
+<a href ="index.php?uc=voirProduits&action=triProduits&ordre=ASC">Croissant</a>
+<a href ="index.php?uc=voirProduits&action=triProduits&ordre=DESC">Décroissant</a></h4>
+</div>
 <div id="produits">
-
 <?php
-// parcours du tableau contenant les produits à afficherforeach( $lesProduits as $unProduit) 
+// parcours du tableau contenant les produits à afficher
+foreach( $produits as $unProduit) 
 { 	// récupération des informations du produit
 	$id = $unProduit['id'];
 	$description = $unProduit['description'];

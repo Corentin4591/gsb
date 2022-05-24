@@ -42,8 +42,21 @@ switch($action)
 	}
 
 	case 'nosProduits' : {
-		
+		if (!isset($_REQUEST['ordre'])){
+			$ordre = 'ASC';
+			$produits = getProduits($ordre);
+			include("vues/v_produits.php");	
+		}
+		break;
 	}
+
+	case 'triProduits' : {
+		$ordre = $_REQUEST['ordre'];
+		$produits = getProduits($ordre);
+		include("vues/v_produits.php");	
+		break;
+	}
+
 }
 ?>
 

@@ -238,7 +238,11 @@ include_once 'bd.inc.php';
 			$laCommande = $res->fetchAll();
 			return $laCommande;
 	}
-
+	/**
+	 * Fonction qui retourne les commandes d'un utilisateur à partir de son id dans la bdd
+	 * @param $idUser : l'id de la personne connectée 
+	 * @return $commandeUser : la ou les commmandes faites par la personne connectée
+	 */
 	function getCommandeByUser ($idUser) {
 		$monPdo = connexionPDO();
 		$req = 'SELECT c.id, c.dateCommande, c.nomPrenomClient, c.adresseRueClient, c.cpClient, c.villeClient, c.mailClient, c.id_utilisateurs, statut.libelle as statut from commande c join statut on statut.id=c.id_statut where '.$idUser.'= c.id_utilisateurs';
@@ -247,11 +251,28 @@ include_once 'bd.inc.php';
 		return $commandeUser;
 	}
 
+	/**
+	 * Fonction qui retourne l'id de la personne connectée à partir de so identifiant de connexion
+	 * @param $mail : l'identifiant de connexion de la personne 
+	 * @return $idUser : l'id dans la bdd de la personne connectée
+	 */
 	function getIdUser ($mail) {
 		$monPdo = connexionPDO();
 		$req = 'SELECT id from utilisateurs WHERE email = "'.$mail.'"';
 		$res = $monPdo->query($req);
 		$idUser = $res->fetch();
 		return $idUser;
+	}
+
+	/**
+	 * Fonction qui retourne tous les produits
+	 * @return $produits : liste de tous les produits de la bdd
+	 */
+	function getProduits ($ordre) {
+		$monPdo = connexionPDO();
+		$req = 'SELECT id, description, prix, image FROM produit ORDER BY prix '.$ordre;
+		$res = $monPdo->query($req);
+		$produits = $res->fetchAll();
+		return $produits;
 	}
 ?>

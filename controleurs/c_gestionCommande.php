@@ -11,7 +11,7 @@ $action = $_REQUEST['action'];
                 $lesCommandesF = getCommandesF();
                 include("vues/v_gestionCommande.php");
             }
-            
+            break;
         }
 
         case 'suivreCommande' : {
@@ -19,7 +19,7 @@ $action = $_REQUEST['action'];
                 $commandeUser = getCommandeByUser($_SESSION['login']);
                 include("vues/v_commandeUser.php");
             }
-            
+            break;
         }
     }
 
