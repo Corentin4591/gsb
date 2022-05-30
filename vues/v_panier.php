@@ -1,7 +1,7 @@
 <div><img src="images/panier.gif"	alt="Panier" title="panier"/></div>
 <div id="produits">
 <?php
-
+$prix_total = 0;
 foreach( $lesProduitsDuPanier as $unProduit) 
 {
 	// récupération des données d'un produit
@@ -9,7 +9,7 @@ foreach( $lesProduitsDuPanier as $unProduit)
 	$description = $unProduit['description'];
 	$image = $unProduit['image'];
 	$prix = $unProduit['prix'];
-	$prix_total = $prix
+	$prix_total = $prix_total + $prix;
 	// affichage
 	?>
 	<div class="card">
@@ -24,6 +24,9 @@ foreach( $lesProduitsDuPanier as $unProduit)
 ?>
 <div class="commande">
 <a href="index.php?uc=gererPanier&action=passerCommande"><img src="images/commander.jpg" title="Passer commande" alt="Commander"></a>
+<?php
+echo 'Prix total : '.$prix_total.' € ';
+?>
 </div>
 </div>
 <br/>

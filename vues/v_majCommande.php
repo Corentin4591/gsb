@@ -44,6 +44,7 @@
             <?php
             if (isset($_POST['submit'])){ //quand le bouton est cliqué, la commande est mise à jour avec le nouveau statut
                 majCommande($_POST['statut'],$laCommande[0]['id']);
+                header('Location: index.php?uc=gestionCommande&action=gererCommande ');
             }
             ?>
         <div>
