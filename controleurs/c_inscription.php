@@ -15,6 +15,7 @@
                                 'mail' => $mail,
                                 'pass' => $pass));
                             echo 'Inscription réussi';
+                            header('Location: index.php?uc=accueil ');
                         }
                         else echo 'Votre mot de passe n\'est pas assez complexe';
                     }

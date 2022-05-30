@@ -36,7 +36,7 @@
                             $sess = getIdUser($pseudo);
                             $_SESSION['login'] = $sess[0];  //  $_SESSION['login'] == l'id de l'utilisateur
                         }
-                        header('Location: index.php?uc=connexion&action=seConnecter ');
+                        header('Location: index.php?uc=accueil ');
                         echo 'Vous êtes connecté !';
                     }
                 }
